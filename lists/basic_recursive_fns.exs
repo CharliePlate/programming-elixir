@@ -18,6 +18,14 @@ defmodule MyList do
 
   def caesar([head | tail], n) when head + n > ?z,
     do: [head + n - (?z - ?a + 1) | caesar(tail, n)]
+
+  # Ex. 4: Write a runction MyList.span(from, to) that returns a list of numbers from from up to to
+  def span(from, to) when from > to and is_number(from) and is_number(to), do: []
+
+  def span(from, to) when from <= to and is_number(from) and is_number(to),
+    do: [from | span(from + 1, to)]
+
+  def span(_), do: raise("something is invalid")
 end
 
 # Ex. 1
@@ -26,3 +34,5 @@ IO.puts(MyList.mapsum([1, 2, 3], fn num -> num + 1 end))
 IO.puts(MyList.max([1, 2, 3]))
 # Ex. 3
 IO.inspect(MyList.caesar(~c"ryvkve", 13))
+# Ex. 4
+IO.inspect(MyList.span(2, 5))
